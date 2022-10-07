@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+
+        <template inherit_id="stock.report_deliveryslip" id="custom_stock_report_deliveryslip">
+            <xpath expr="//t[@t-foreach='docs']" position="replace">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="no_of_copies" t-value="o.get_num_of_slips()"/>
+                    <t t-foreach="no_of_copies+1" t-as="num">
+                        <t t-if="num!=0">
+                            <t t-set="num_text" t-value="o.get_num_text(num)"/>
+                            <t t-call="stock.report_delivery_document" t-lang="o.partner_id.lang"/>
+                        </t>
+                    </t>
+                </t>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>
